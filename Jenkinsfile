@@ -55,12 +55,15 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            steps {
-                script {
-                    sh "docker build -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} ."
-                }
-            }
-        }
+             steps {
+                 script {
+                     sh """
+                         docker buildx create --use --name mybuilder || true
+                         docker buildx build --platform=linux/amd64 -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} .
+                     """
+                 }
+             }
+         }
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {

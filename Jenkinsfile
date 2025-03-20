@@ -57,7 +57,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build --platform linux/amd64 -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} ."
+                    sh "docker buildx build --platform=linux/amd64,linux/arm64  -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} ."
                 }
             }
         }

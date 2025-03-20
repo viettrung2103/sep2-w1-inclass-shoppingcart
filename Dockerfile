@@ -1,6 +1,5 @@
-
 # Use Maven image to build the application
-FROM --platform=linux/amd64 maven:latest
+FROM maven:latest
 
 # Set working directory inside the container
 WORKDIR /app

@@ -58,7 +58,7 @@ pipeline {
              steps {
                  script {
                      sh """
-                         docker buildx create --use --name mybuilder || true
+                         docker buildx use mybuilder || docker buildx create --use --name mybuilder
                          docker buildx build --platform=linux/amd64 -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} .
                      """
                  }

@@ -1,4 +1,4 @@
-# Use Maven image with correct platform
+# Force AMD64 platform to match Docker build environment
 FROM --platform=linux/amd64 maven:latest
 
 # Set working directory inside the container
